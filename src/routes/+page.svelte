@@ -795,6 +795,93 @@
 		color: #1a1209;
 		text-align: center;
 	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 13vw;
+			white-space: normal;
+			line-height: 0.95;
+		}
+
+		h2 {
+			font-size: 1rem;
+			line-height: 1.4;
+		}
+
+		.hero {
+			padding-top: 6vh;
+			justify-content: flex-start;
+		}
+
+		.coming-soon {
+			white-space: normal;
+			padding: 1em 1.5em;
+		}
+
+		.coming-soon p:first-child { font-size: 1.4rem; }
+		.coming-soon p:last-child  { font-size: 0.9rem; }
+
+		.photo-corner {
+			display: none;
+		}
+
+		.section {
+			padding: 3rem 5vw;
+		}
+
+		.section h3,
+		.how h3 {
+			font-size: 1.6rem;
+		}
+
+		.section p,
+		.how > p {
+			font-size: 1rem;
+			line-height: 1.7;
+		}
+
+		.how {
+			padding: 3rem 5vw 1rem;
+		}
+
+		.comic {
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+			margin: 1.5rem 0 0;
+		}
+
+		.panel {
+			position: relative;
+			left: auto !important;
+			top: auto !important;
+			width: 100%;
+			transform: none !important;
+			opacity: 1 !important;
+			animation: none !important;
+		}
+
+		.section-row,
+		.section-split {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		footer {
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			padding: 2rem 1rem 3rem;
+		}
+
+		footer img:not(.footer-polka) {
+			height: 40px;
+		}
+
+		.fossils {
+			display: none;
+		}
+	}
 </style>
 
 <div class="page-root">
