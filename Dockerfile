@@ -23,4 +23,4 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 
-CMD ["node", "build/index.js"]
+CMD ["sh", "-c", "node build/index.js; echo \"Exited with code $?\"; sleep 300"]
