@@ -187,7 +187,7 @@
 		{ src: '/images/fossil2.webp', top: '83%',  left: '20%', rot:   35, size: 80 },
 		{ src: '/images/fossil1.webp', top: '85%',  left:  '2%', rot:  -12, size: 85 },
 		{ src: '/images/fossil2.webp', top: '80%',  left: '72%', rot:   79, size: 70 },
-		{ src: '/images/fossil1.webp', top: '87%',  left: '48%', rot:  -90, size: 60 },
+		//{ src: '/images/fossil1.webp', top: '87%',  left: '48%', rot:  -90, size: 60 },
 		{ src: '/images/fossil2.webp', top: '90%',  left: '50%', rot:  -40, size: 60 },
 		{ src: '/images/fossil1.webp', top: '95%',  left: '82%', rot:  280, size: 72 },
 	];
@@ -206,7 +206,7 @@
 
 <svelte:head>
 	<title>Beest</title>
-	<link rel="preload" as="image" type="image/webp" href="/images/hero-opt.webp" fetchpriority="high">
+	<link rel="preload" as="image" type="image/png" href="/images/hero.png" fetchpriority="high">
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/OrelegaOne-Regular.woff2" crossorigin>
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/OnlyTrue-Neutral.woff2" crossorigin>
 </svelte:head>
@@ -277,7 +277,7 @@
 		position: relative;
 		z-index: 8;
 		background-color: #8eadcf;
-		background-image: url('/images/hero-opt.webp');
+		background-image: url('/images/hero.png');
 		background-size: cover;
 		background-position: center;
 	}
@@ -292,7 +292,7 @@
 	}
 
 	.flag img {
-		width: 110px;
+		width: 260px;
 		display: block;
 	}
 
@@ -301,50 +301,39 @@
 	}
 
 	.coming-soon {
-		background: #ec3750;
-		color: #fff;
-		text-align: left;
-		padding: 1.2em 2.5em;
-		border-radius: 4px;
-		box-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+		color: #000;
 		text-decoration: none;
-		display: inline-block;
-		margin-top: 1.5rem;
-		transition: transform 0.15s ease, box-shadow 0.15s ease;
-		white-space: nowrap;
+		margin-top: 1rem;
+		margin-left: -4.5vw;
+		display: block;
 	}
 
-	.coming-soon:hover {
-		transform: translateY(-2px);
-		box-shadow: 4px 6px 0 rgba(0,0,0,0.25);
+	.coming-soon p {
+		margin: 0;
+		font-size: 1.1rem;
+		line-height: 1.5;
 	}
 
 	.coming-soon p:first-child {
-		font-size: 2rem;
-		font-weight: 900;
-		margin: 0 0 0.3em 0;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-	}
-
-	.coming-soon p:last-child {
-		font-size: 1.1rem;
-		margin: 0;
-		opacity: 0.92;
+		font-size: 1.4rem;
+		font-weight: 700;
 	}
 
 	h1 {
 		font-family: 'OnlyTrue', sans-serif;
-		font-size: 5vw;
+		font-size: 4.2vw;
 		line-height: 1;
 		white-space: nowrap;
 		color: #000;
 		font-weight: 1;
+		margin-top: 15vh;
 		margin-bottom: 0;
+		margin-left: -4.8vw;
 	}
 
 	h2 {
-		margin-top: 0.2em;
+		margin-top: 0.1em;
+		margin-left: -4.5vw;	
 	}
 
 	.scroll {
@@ -380,10 +369,10 @@
 	}
 
 	#s-what {
-		background-color: #e2e2a4;
-		background-image: linear-gradient(rgba(236,236,188,0.65), rgba(236,236,188,0.65)), var(--noise);
+		background-color: #e0ba8d;
+		background-image: linear-gradient(rgba(230,196,155,0.65), rgba(230,196,155,0.65)), var(--noise);
 		background-blend-mode: normal, soft-light;
-		--brush-color: #eaeac0;
+		--brush-color: #e8c9a0;
 
 	}
 
@@ -777,8 +766,8 @@
 		height: 200px;
 		pointer-events: none;
 		z-index: 10;
-		background-color: #ecec77;
-		background-image: linear-gradient(rgba(236,236,188,0.65), rgba(236,236,188,0.65)), var(--noise);
+		background-color: #e0ba8d;
+		background-image: linear-gradient(rgba(224,186,141,0.65), rgba(212, 159, 93, 0.65)), var(--noise);
 		background-size: auto, auto;
 		background-blend-mode: normal, soft-light;
 		clip-path: url(#sand-top);
@@ -801,8 +790,8 @@
 	}
 
 	#s-what::after {
-		background-color: #ececbc;
-		background-image: linear-gradient(to bottom, #ececbc, #ede0b8), var(--noise);
+		background-color: #e0ba8d;
+		background-image: linear-gradient(to bottom, #e0ba8d, #ede0b8), var(--noise);
 		clip-path: polygon(
 			0% 30%, 6% 5%, 14% 45%, 22% 8%, 31% 50%, 40% 12%, 49% 42%, 58% 0%, 67% 38%, 76% 10%, 84% 48%, 92% 6%, 100% 35%,
 			100% 72%,
@@ -1024,15 +1013,11 @@
 		}
 
 		.coming-soon {
-			position: absolute;
-			bottom: 15%;
-			left: 6vw;
-			white-space: normal;
-			padding: 1em 1.5em;
+			margin-left: 0;
 		}
 
-		.coming-soon p:first-child { font-size: 1.4rem; }
-		.coming-soon p:last-child  { font-size: 0.9rem; }
+		.coming-soon p:first-child { font-size: 1.1rem; }
+		.coming-soon p:last-child  { font-size: 0.85rem; }
 
 		.photo-corner {
 			display: none;
@@ -1168,8 +1153,9 @@
 	<h1>BUILD A BEEST</h1>
 	<h2><u>Code a project, Fly to the Netherlands, Build a mechanical animal!</u></h2>
 	<a href="https://hackclub.enterprise.slack.com/archives/C0ALJ3NT1D0" class="coming-soon">
-		<p>Coming soon</p>
-		<p>Watch me develop in <strong>#beest</strong> on Slack <br>Nothing here is finalised.</p>
+		<br><br>
+		<p>Coming soon!</p><br>
+		<p>Watch me develop in <strong>#beest</strong><br> on Slack. Nothing here is finalised.</p>
 	</a>
 	<span class="scroll" style="font-size: 2rem; color: #000; text-align: center; display: flex; align-items: center; justify-content: center;">↓</span>
 </div>
@@ -1188,7 +1174,7 @@
 	<path
 		d="M0,55 C40,48 55,8 100,12 C145,16 155,68 210,72 C265,76 280,18 340,14 C400,10 420,74 480,70 C540,66 560,10 620,8 C680,6 700,78 760,74 C820,70 840,20 900,16 C940,13 975,48 1000,52"
 		fill="none"
-		stroke="#b3ad7d"
+		stroke="#c9a474"
 		stroke-width="3"
 		stroke-linejoin="round"
 		vector-effect="non-scaling-stroke"
