@@ -316,8 +316,8 @@
 	}
 
 	#s-eligible {
-		background-color: #9a7040;
-		background-image: linear-gradient(rgba(154,112,64,0.88), rgba(154,112,64,0.88)), url('/images/noise.jpg');
+		background-color: #b49066;
+		background-image: linear-gradient(rgba(155, 112, 64, 0.88), rgba(154,112,64,0.88)), url('/images/noise.jpg');
 		background-blend-mode: normal, soft-light;
 	}
 
