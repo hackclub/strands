@@ -62,6 +62,7 @@
 	const ORPH_GAP_FRAME = 30;
 
 	let orphPhaseMs = 0;
+	let jumpIntensity = 0;
 	let currentOrphFrame = 0;
 	let carouselPaused = false;
 	let visibleCount = 0;
@@ -128,6 +129,16 @@
 				const elapsed = now - carouselStartTime - pausedSoFar;
 				const cyclePos = ((elapsed + orphPhaseMs) % ORPH_CYCLE_MS + ORPH_CYCLE_MS) % ORPH_CYCLE_MS;
 				currentOrphFrame = frameForCyclePos(cyclePos);
+
+				// Jump starts at frame 0 and ramps up then down over JUMP_DURATION
+				const jumpStart = orphCumulative[0];
+				const JUMP_DURATION = 800;
+				let into = cyclePos - jumpStart;
+				if (into < -ORPH_CYCLE_MS / 2) into += ORPH_CYCLE_MS;
+				if (into > ORPH_CYCLE_MS / 2) into -= ORPH_CYCLE_MS;
+				jumpIntensity = (into >= 0 && into < JUMP_DURATION)
+					? Math.sin(Math.PI * into / JUMP_DURATION)
+					: 0;
 			}
 			rafId = requestAnimationFrame(tick);
 		}
@@ -160,21 +171,25 @@
 	// Fossills
 	
 	const fossils = [
-		{ src: '/images/fossil1.webp', top:  '8%',  left: '88%', rot:   15, size: 70 },
+		{ src: '/images/fossil1.webp', top:  '7%',  left: '92%', rot:   25, size: 60 },
+		{ src: '/images/fossil2.webp', top:  '8%',  left: '88%', rot:   15, size: 70 },
+		{ src: '/images/fossil1.webp', top:  '9%',  left:  '2%', rot:  -40, size: 65 },
+		{ src: '/images/fossil2.webp', top: '11%',  left: '78%', rot:   70, size: 55 },
+		{ src: '/images/fossil1.webp', top: '13%',  left: '15%', rot:  -15, size: 50 },
 		{ src: '/images/fossil2.webp', top: '14%',  left:  '3%', rot:  -55, size: 55 },
 		{ src: '/images/fossil1.webp', top: '22%',  left: '60%', rot:  120, size: 60 },
-		{ src: '/images/fossil2.webp', top: '33.4%',left: '80%', rot:   80, size: 90 },
+		{ src: '/images/fossil2.webp', top: '31%',  left: '80%', rot:   80, size: 90 },
 		{ src: '/images/fossil1.webp', top: '40%',  left: '18%', rot:  -20, size: 75 },
 		{ src: '/images/fossil2.webp', top: '45%',  left:  '6%', rot:  -32, size: 65 },
 		{ src: '/images/fossil1.webp', top: '52%',  left: '75%', rot:   60, size: 55 },
 		{ src: '/images/fossil2.webp', top: '55%',  left: '91%', rot:   44, size: 75 },
 		{ src: '/images/fossil1.webp', top: '63%',  left: '35%', rot:  -70, size: 65 },
-		{ src: '/images/fossil2.webp', top: '70%',  left: '12%', rot:   35, size: 80 },
-		{ src: '/images/fossil1.webp', top: '78%',  left:  '2%', rot:  -12, size: 85 },
-		{ src: '/images/fossil2.webp', top: '80%',  left: '72%', rot:   27, size: 70 },
+		{ src: '/images/fossil2.webp', top: '83%',  left: '20%', rot:   35, size: 80 },
+		{ src: '/images/fossil1.webp', top: '85%',  left:  '2%', rot:  -12, size: 85 },
+		{ src: '/images/fossil2.webp', top: '80%',  left: '72%', rot:   79, size: 70 },
 		{ src: '/images/fossil1.webp', top: '87%',  left: '48%', rot:  -90, size: 60 },
 		{ src: '/images/fossil2.webp', top: '90%',  left: '50%', rot:  -40, size: 60 },
-		{ src: '/images/fossil1.webp', top: '95%',  left: '82%', rot:  150, size: 72 },
+		{ src: '/images/fossil1.webp', top: '95%',  left: '82%', rot:  280, size: 72 },
 	];
 
 	const shopItems = [
@@ -260,6 +275,7 @@
 		justify-content: flex-start;
 		padding: 1vh 6vw 3vh 6vw;
 		position: relative;
+		z-index: 8;
 		background-color: #8eadcf;
 		background-image: url('/images/hero-opt.webp');
 		background-size: cover;
@@ -270,7 +286,7 @@
 		position: absolute;
 		top: 0;
 		left: 24px;
-		z-index: 10;
+		z-index: 50;
 		transform-origin: top center;
 		transition: transform 0.3s ease;
 	}
@@ -405,13 +421,13 @@
 	.section p,
 	.how > p {
 		position: relative;
-		z-index: 1;
+		z-index: 8;
 	}
 
 	.section h3,
 	.how h3 {
 		position: relative;
-		z-index: 2;
+		z-index: 9;
 		width: fit-content;
 	}
 
@@ -448,6 +464,11 @@
 	.split-left h3,
 	.split-right h3 {
 		margin-left: 1.2rem;
+	}
+
+	.section > img {
+		position: relative;
+		z-index: 8;
 	}
 
 	.section p {
@@ -492,6 +513,7 @@
 
 	.comic {
 		position: relative;
+		z-index: 8;
 		height: 580px;
 		margin: 2rem 0 0rem;
 	}
@@ -557,7 +579,7 @@
 		height: 82px;
 		margin-top: -80px;
 		margin-bottom: -2px;
-		z-index: 5;
+		z-index: 15;
 		background-color: #1a1209;
 		clip-path: polygon(
 			0% 40%, 6% 5%, 14% 48%, 22% 10%, 31% 52%, 40% 8%, 49% 44%, 58% 2%, 67% 40%, 76% 12%, 84% 50%, 92% 6%, 100% 38%,
@@ -569,6 +591,8 @@
 		display: flex;
 		align-items: flex-start;
 		gap: 2rem;
+		position: relative;
+		z-index: 8;
 	}
 
 	.section-row p {
@@ -577,6 +601,7 @@
 
 	.video-embed {
 		position: relative;
+		z-index: 8;
 		width: 100%;
 		max-width: 960px;
 		margin: 4rem auto 0;
@@ -599,6 +624,8 @@
 		background-color: #1a1209;
 		background-image: none;
 		isolation: isolate;
+		position: relative;
+		z-index: 15;
 		width: 100%;
 		display: flex;
 		align-items: flex-end;
@@ -628,7 +655,7 @@
 		transform: rotate(45deg);
 		transform-origin: top center;
 		cursor: pointer;
-		z-index: 10;
+		z-index: 50;
 		animation: peek-out 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
 	}
 
@@ -709,6 +736,8 @@
 	.split-left {
 		flex: 1;
 		padding-right: 3vw;
+		position: relative;
+		z-index: 8;
 	}
 
 	.split-divider {
@@ -717,11 +746,15 @@
 		flex-shrink: 0;
 		background: url('/images/vertical-pipe.webp') center / 100% 100% no-repeat;
 		opacity: 0.6;
+		position: relative;
+		z-index: 8;
 	}
 
 	.split-right {
 		flex: 1;
 		padding-left: 3vw;
+		position: relative;
+		z-index: 8;
 	}
 
 	.teeth-line {
@@ -731,7 +764,7 @@
 		width: 100%;
 		height: 200px;
 		pointer-events: none;
-		z-index: 6;
+		z-index: 11;
 		color: fff;
 	}
 
@@ -743,7 +776,7 @@
 		width: 100%;
 		height: 200px;
 		pointer-events: none;
-		z-index: 5;
+		z-index: 10;
 		background-color: #ecec77;
 		background-image: linear-gradient(rgba(236,236,188,0.65), rgba(236,236,188,0.65)), var(--noise);
 		background-size: auto, auto;
@@ -762,7 +795,7 @@
 		width: 100%;
 		height: 80px;
 		pointer-events: none;
-		z-index: 5;
+		z-index: 12;
 		background-size: auto, auto;
 		background-blend-mode: normal, soft-light;
 	}
@@ -805,11 +838,13 @@
 	}
 
 	.carousel-section {
+		position: relative;
 		background-color: #c0a06a;
 		background-image: linear-gradient(rgba(192,160,106,0.88), rgba(192,160,106,0.88)), var(--noise);
 		background-blend-mode: normal, soft-light;
 		padding-bottom: calc(4rem + 80px);
 		overflow: hidden;
+		--brush-color: #cdb07a;
 	}
 
 	.shop-carousel {
@@ -818,6 +853,8 @@
 		transform: rotate(-10deg);
 		margin: -2rem -15vw 0;
 		width: calc(100% + 30vw);
+		position: relative;
+		z-index: 8;
 	}
 
 	.earn-prizes-title {
@@ -826,10 +863,26 @@
 		font-weight: normal;
 		font-size: 5vw;
 		text-transform: uppercase;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		transform: translateY(13rem);
 		color: #1a1209;
+		position: relative;
+		z-index: 8;
+		width: fit-content;
+	}
+
+	.earn-prizes-title::before {
+		content: '';
+		position: absolute;
+		top: -15px;
+		bottom: -15px;
+		left: -30px;
+		right: -30px;
+		z-index: -1;
+		background: var(--brush-color);
+		filter: url(#brush);
+		border-radius: 40px / 50%;
 	}
 
 	.orph-runner {
@@ -838,7 +891,8 @@
 		width: auto;
 		margin: 0 auto -0px;
 		position: relative;
-		z-index: 10;
+		z-index: 20;
+		transform-origin: bottom center;
 	}
 
 	.carousel-belt {
@@ -926,7 +980,7 @@
 		inset: 0;
 		pointer-events: none;
 		overflow: hidden;
-		z-index: 0;
+		z-index: 5;
 	}
 
 	.fossil {
@@ -1209,7 +1263,12 @@
 </div>
 <div class="shop-carousel" bind:this={shopCarouselEl}><!-- on:mouseenter={pauseCarousel} on:mouseleave={resumeCarousel} -->
 	{#if orphReady}
-		<img src={orphFrames[currentOrphFrame].src} class="orph-runner" alt="">
+		<img
+			src={orphFrames[currentOrphFrame].src}
+			class="orph-runner"
+			alt=""
+			style="transform: translateY({-jumpIntensity * 30}px) scaleY({1 + jumpIntensity * 0.15})"
+		>
 	{/if}
 	<div class="carousel-belt" class:running={carouselReady} class:paused={carouselPaused}>
 		{#each [...shopItems, ...shopItems] as item}
