@@ -543,6 +543,26 @@
 		flex: 1;
 	}
 
+	.video-embed {
+		position: relative;
+		width: 100%;
+		max-width: 960px;
+		margin: 4rem auto 0;
+		aspect-ratio: 16 / 9;
+		border-radius: 6px;
+		overflow: hidden;
+		box-shadow: 5px 5px 14px rgba(0,0,0,0.22);
+	}
+
+	.video-embed iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+
 	footer {
 		background-color: #1a1209;
 		background-image: none;
@@ -1091,6 +1111,15 @@
 <h3>What is this?</h3>
 	<div class="section-row">
 		<p>Beest is a Hack Club program. A Beest (<a href="https://www.strandbeest.com/">Strandbeest</a>) is a sail powered mechanical animal constructed of just fabric, plastic pipes, zip ties and recycled plastic bottles. I think they are the coolest thing ever, and if you agree, you can join me in building one! Everything (including flights, food and accommodation) is totally free for teenagers who qualify by building a project. From [Date] to [Date] you and [X] teens will fly to the Netherlands to build a StrandBeest, present it to the creator of strandbeests and watch him exhibit the full collection!</p>
+	</div>
+	<div class="video-embed">
+		<iframe
+			src="https://www.youtube.com/watch?v=H5RPsCMl3uM"
+			title="Strandbeest"
+			frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen
+		></iframe>
 	</div>
 </div>
 
