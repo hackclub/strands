@@ -1114,7 +1114,7 @@
 	</div>
 	<div class="video-embed">
 		<iframe
-			src="https://www.youtube.com/watch?v=H5RPsCMl3uM"
+			src="https://www.youtube.com/embed/H5RPsCMl3uM"
 			title="Strandbeest"
 			frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
