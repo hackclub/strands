@@ -58,15 +58,16 @@
 		return 0;
 	}
 
-	// offset to synch animations
-	// phase = 500ms.
-	const ORPH_PHASE_MS = 500;
+	// Target frame index that should play in the gap between cards
+	const ORPH_GAP_FRAME = 30;
 
+	let orphPhaseMs = 0;
 	let currentOrphFrame = 0;
 	let carouselPaused = false;
 	let visibleCount = 0;
 	let howEl;
 	let comicEl;
+	let shopCarouselEl;
 	let carouselStartTime = null;
 	let totalPausedMs = 0;
 	let pauseStartTime = null;
@@ -85,10 +86,38 @@
 	// 	carouselPaused = false;
 	// }
 
+
+	function calcOrphPhase() {
+		if (!shopCarouselEl) return;
+		const belt = shopCarouselEl.querySelector('.carousel-belt');
+		if (!belt) return;
+		const cards = belt.querySelectorAll('.carousel-card');
+		if (cards.length < 1) return;
+		// use local co-oords bc skewed axis
+		const cardWidth = cards[0].offsetWidth;
+		const gap = parseFloat(getComputedStyle(belt).gap) || 0;
+		const cellWidth = cardWidth + gap;
+		const gapCenter = cardWidth + gap / 2; 
+
+		
+		const orphX = shopCarouselEl.clientWidth / 2;
+
+
+		const posInCell = ((orphX % cellWidth) + cellWidth) % cellWidth;
+		const distToGap = ((gapCenter - posInCell) + cellWidth) % cellWidth;
+		const timeToFirstGap = distToGap * ORPH_CYCLE_MS / cellWidth;
+		const frameMid = orphCumulative[ORPH_GAP_FRAME] + orphFrames[ORPH_GAP_FRAME].delay / 2;
+		orphPhaseMs = timeToFirstGap - frameMid;
+	}
+
 	onMount(() => {
-		requestAnimationFrame((t) => {
-			carouselStartTime = t;
+		requestAnimationFrame(() => {
 			carouselReady = true;
+
+			requestAnimationFrame((t) => {
+				carouselStartTime = t;
+				calcOrphPhase();
+			});
 			setTimeout(() => { orphReady = true; }, 500);
 		});
 
@@ -97,12 +126,15 @@
 				const pausing = carouselPaused && pauseStartTime !== null;
 				const pausedSoFar = totalPausedMs + (pausing ? now - pauseStartTime : 0);
 				const elapsed = now - carouselStartTime - pausedSoFar;
-				const cyclePos = (elapsed + ORPH_PHASE_MS) % ORPH_CYCLE_MS;
+				const cyclePos = ((elapsed + orphPhaseMs) % ORPH_CYCLE_MS + ORPH_CYCLE_MS) % ORPH_CYCLE_MS;
 				currentOrphFrame = frameForCyclePos(cyclePos);
 			}
 			rafId = requestAnimationFrame(tick);
 		}
 		rafId = requestAnimationFrame(tick);
+
+		function onResize() { calcOrphPhase(); }
+		window.addEventListener('resize', onResize);
 
 		function onScroll() {
 			if (!comicEl) return;
@@ -114,7 +146,7 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 		onScroll();
 
-		return () => { cancelAnimationFrame(rafId); window.removeEventListener('scroll', onScroll); };
+		return () => { cancelAnimationFrame(rafId); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onResize); };
 	});
 
 	const steps = [
@@ -1175,7 +1207,7 @@
 		{/each}
 	</div>
 </div>
-<div class="shop-carousel"><!-- on:mouseenter={pauseCarousel} on:mouseleave={resumeCarousel} -->
+<div class="shop-carousel" bind:this={shopCarouselEl}><!-- on:mouseenter={pauseCarousel} on:mouseleave={resumeCarousel} -->
 	{#if orphReady}
 		<img src={orphFrames[currentOrphFrame].src} class="orph-runner" alt="">
 	{/if}
