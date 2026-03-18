@@ -118,82 +118,106 @@
 	});
 
 	const steps = [
-		{ img: '/images/step1.png', alt: 'Join the Hack Club community',    caption: 'Join the Hack Club community' },
-		{ img: '/images/step2.png', alt: 'Learn from peers and make friends', caption: 'Learn from peers and make friends' },
-		{ img: '/images/step3.png', alt: 'Build an open source project',     caption: 'Build an open source project' },
-		{ img: '/images/step4.png', alt: 'Fly to the Netherlands',           caption: 'Fly to the Netherlands' },
-		{ img: '/images/step5.png', alt: 'Build a Beest',                    caption: 'Build a Beest' },
+		{ img: '/images/step1.webp', alt: 'Join the Hack Club community',    caption: 'Join the Hack Club community' },
+		{ img: '/images/step2.webp', alt: 'Learn from peers and make friends', caption: 'Learn from peers and make friends' },
+		{ img: '/images/step3.webp', alt: 'Build an open source project',     caption: 'Build an open source project' },
+		{ img: '/images/step4.webp', alt: 'Fly to the Netherlands',           caption: 'Fly to the Netherlands' },
+		{ img: '/images/step5.webp', alt: 'Build a Beest',                    caption: 'Build a Beest' },
 	];
 
 	// Fossills
 	
 	const fossils = [
-		{ src: '/images/fossil1.png', top:  '8%',  left: '88%', rot:   15, size: 70 },
-		{ src: '/images/fossil2.png', top: '14%',  left:  '3%', rot:  -55, size: 55 },
-		{ src: '/images/fossil1.png', top: '22%',  left: '60%', rot:  120, size: 60 },
-		{ src: '/images/fossil2.png', top: '33.4%',left: '80%', rot:   80, size: 90 },
-		{ src: '/images/fossil1.png', top: '40%',  left: '18%', rot:  -20, size: 75 },
-		{ src: '/images/fossil2.png', top: '45%',  left:  '6%', rot:  -32, size: 65 },
-		{ src: '/images/fossil1.png', top: '52%',  left: '75%', rot:   60, size: 55 },
-		{ src: '/images/fossil2.png', top: '55%',  left: '91%', rot:   44, size: 75 },
-		{ src: '/images/fossil1.png', top: '63%',  left: '35%', rot:  -70, size: 65 },
-		{ src: '/images/fossil2.png', top: '70%',  left: '12%', rot:   35, size: 80 },
-		{ src: '/images/fossil1.png', top: '78%',  left:  '2%', rot:  -12, size: 85 },
-		{ src: '/images/fossil2.png', top: '80%',  left: '72%', rot:   27, size: 70 },
-		{ src: '/images/fossil1.png', top: '87%',  left: '48%', rot:  -90, size: 60 },
-		{ src: '/images/fossil2.png', top: '90%',  left: '50%', rot:  -40, size: 60 },
-		{ src: '/images/fossil1.png', top: '95%',  left: '82%', rot:  150, size: 72 },
+		{ src: '/images/fossil1.webp', top:  '8%',  left: '88%', rot:   15, size: 70 },
+		{ src: '/images/fossil2.webp', top: '14%',  left:  '3%', rot:  -55, size: 55 },
+		{ src: '/images/fossil1.webp', top: '22%',  left: '60%', rot:  120, size: 60 },
+		{ src: '/images/fossil2.webp', top: '33.4%',left: '80%', rot:   80, size: 90 },
+		{ src: '/images/fossil1.webp', top: '40%',  left: '18%', rot:  -20, size: 75 },
+		{ src: '/images/fossil2.webp', top: '45%',  left:  '6%', rot:  -32, size: 65 },
+		{ src: '/images/fossil1.webp', top: '52%',  left: '75%', rot:   60, size: 55 },
+		{ src: '/images/fossil2.webp', top: '55%',  left: '91%', rot:   44, size: 75 },
+		{ src: '/images/fossil1.webp', top: '63%',  left: '35%', rot:  -70, size: 65 },
+		{ src: '/images/fossil2.webp', top: '70%',  left: '12%', rot:   35, size: 80 },
+		{ src: '/images/fossil1.webp', top: '78%',  left:  '2%', rot:  -12, size: 85 },
+		{ src: '/images/fossil2.webp', top: '80%',  left: '72%', rot:   27, size: 70 },
+		{ src: '/images/fossil1.webp', top: '87%',  left: '48%', rot:  -90, size: 60 },
+		{ src: '/images/fossil2.webp', top: '90%',  left: '50%', rot:  -40, size: 60 },
+		{ src: '/images/fossil1.webp', top: '95%',  left: '82%', rot:  150, size: 72 },
 	];
 
 	const shopItems = [
-		{ src: '/images/shop/headphones.png', caption: 'Headphones' },
-		{ src: '/images/shop/printer.png', caption: '3D Printer' },
-		{ src: '/images/shop/blahaj.png', caption: 'Blahaj' },
-		{ src: '/images/shop/stickers.png', caption: 'Stickers' },
-		{ src: '/images/shop/framework.png', caption: 'Framework Laptop' },
-		{ src: '/images/shop/polaroid.png', caption: 'Polaroid Camera' },
-		{ src: '/images/shop/flight-stipend.png', caption: 'flight stipend' },
+		{ src: '/images/shop/headphones.webp', caption: 'Headphones' },
+		{ src: '/images/shop/printer.webp', caption: '3D Printer' },
+		{ src: '/images/shop/blahaj.webp', caption: 'Blahaj' },
+		{ src: '/images/shop/stickers.webp', caption: 'Stickers' },
+		{ src: '/images/shop/framework.webp', caption: 'Framework Laptop' },
+		{ src: '/images/shop/polaroid.webp', caption: 'Polaroid Camera' },
+		{ src: '/images/shop/flight-stipend.webp', caption: 'flight stipend' },
 		
 	];
 </script>
 
+<svelte:head>
+	<title>Beest</title>
+	<link rel="preload" as="image" type="image/webp" href="/images/hero-opt.webp" fetchpriority="high">
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/OrelegaOne-Regular.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/OnlyTrue-Neutral.woff2" crossorigin>
+</svelte:head>
+
 <style>
 	@font-face {
 		font-family: 'OrelegaOne';
-		src: url('/fonts/OrelegaOne-Regular.ttf') format('truetype');
+		src: url('/fonts/OrelegaOne-Regular.woff2') format('woff2'),
+		     url('/fonts/OrelegaOne-Regular.ttf') format('truetype');
 		font-weight: normal;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	@font-face {
 		font-family: 'OnlyTrue';
-		src: url('/fonts/OnlyTrue-Neutral.ttf') format('truetype');
+		src: url('/fonts/OnlyTrue-Neutral.woff2') format('woff2'),
+		     url('/fonts/OnlyTrue-Neutral.ttf') format('truetype');
 		font-stretch: normal;
+		font-display: swap;
 	}
 
 	@font-face {
 		font-family: 'OnlyTrueBigBlob';
-		src: url('/fonts/OnlyTrue-BigBlob.ttf') format('truetype');
+		src: url('/fonts/OnlyTrue-BigBlob.woff2') format('woff2'),
+		     url('/fonts/OnlyTrue-BigBlob.ttf') format('truetype');
 		font-stretch: normal;
+		font-display: swap;
 	}
 
 	@font-face {
 		font-family: 'OnlyTrueSmall';
-		src: url('/fonts/OnlyTrue-Small.ttf') format('truetype');
+		src: url('/fonts/OnlyTrue-Small.woff2') format('woff2'),
+		     url('/fonts/OnlyTrue-Small.ttf') format('truetype');
 		font-stretch: normal;
+		font-display: swap;
+	}
+
+	:global(:root) {
+		--noise: url('/images/noise.webp');
 	}
 
 	:global(body) {
 		margin: 0;
 		src: url('/fonts/main.otf');
 		background-color: #ffffff;
-		background-image: linear-gradient(rgba(245,233,216,0.88), rgba(245,233,216,0.88)), url('/images/noise.jpg');
+		background-image: linear-gradient(rgba(245,233,216,0.88), rgba(245,233,216,0.88)), var(--noise);
 		background-blend-mode: normal, soft-light;
 		color: #3d2a18;
 		font-family: 'OrelegaOne', Georgia, serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		overflow-x: hidden;
+	}
+
+	:global(a) {
+		color: #000;
+		text-decoration: underline;
 	}
 
 	.hero {
@@ -205,7 +229,7 @@
 		padding: 1vh 6vw 3vh 6vw;
 		position: relative;
 		background-color: #8eadcf;
-		background-image: url('/images/hero.png');
+		background-image: url('/images/hero-opt.webp');
 		background-size: cover;
 		background-position: center;
 	}
@@ -282,12 +306,16 @@
 		transform: translateX(-50%);
 		width: 40px;
 		height: 40px;
-		animation: bounce 2s infinite;
+		animation: bounce 2s infinite, scroll-enlarge 0.5s ease 5s forwards;
 	}
 
 	@keyframes bounce {
 		0%, 100% { transform: translateX(-50%) translateY(0); }
 		50% { transform: translateX(-50%) translateY(10px); }
+	}
+
+	@keyframes scroll-enlarge {
+		to { width: 52px; height: 52px; }
 	}
 
 	.content {
@@ -304,21 +332,27 @@
 	}
 
 	#s-what {
-		background-color: #f5edd0;
-		background-image: linear-gradient(rgba(245,237,208,0.65), rgba(245,237,208,0.65)), url('/images/noise.jpg');
+		background-color: #e2e2a4;
+		background-image: linear-gradient(rgba(236,236,188,0.65), rgba(236,236,188,0.65)), var(--noise);
 		background-blend-mode: normal, soft-light;
+		--brush-color: #eaeac0;
+
 	}
 
 	#s-real {
 		background-color: #c8a878;
-		background-image: linear-gradient(rgba(200,168,120,0.65), rgba(200,168,120,0.65)), url('/images/noise.jpg');
+		background-image: linear-gradient(rgba(200,168,120,0.65), rgba(200,168,120,0.65)), var(--noise);
 		background-blend-mode: normal, soft-light;
+		--brush-color: #d4b88c;
+
 	}
 
 	#s-eligible {
 		background-color: #b49066;
-		background-image: linear-gradient(rgba(155, 112, 64, 0.88), rgba(154,112,64,0.88)), url('/images/noise.jpg');
+		background-image: linear-gradient(rgba(155, 112, 64, 0.88), rgba(154,112,64,0.88)), var(--noise);
 		background-blend-mode: normal, soft-light;
+		--brush-color: #b89060;
+
 	}
 
 	.section h3 {
@@ -336,6 +370,54 @@
 		color: #1a0a00;
 	}
 
+	.section p,
+	.how > p {
+		position: relative;
+		z-index: 1;
+	}
+
+	.section h3,
+	.how h3 {
+		position: relative;
+		z-index: 2;
+		width: fit-content;
+	}
+
+	.section p::before,
+	.how > p::before,
+	.section h3::before,
+	.how h3::before {
+		content: '';
+		position: absolute;
+		top: -25px;
+		bottom: -25px;
+		left: -60px;
+		right: -60px;
+		z-index: -1;
+		background: var(--brush-color);
+		filter: url(#brush);
+		border-radius: 40px / 50%;
+	}
+
+	.section h3::before,
+	.how h3::before {
+		left: -30px;
+		right: -30px;
+		top: -15px;
+		bottom: -15px;
+	}
+
+	.split-left p::before,
+	.split-right p::before {
+		left: -35px;
+		right: -20px;
+	}
+
+	.split-left h3,
+	.split-right h3 {
+		margin-left: 1.2rem;
+	}
+
 	.section p {
 		font-size: 1.15rem;
 		line-height: 1.8;
@@ -348,8 +430,10 @@
 		padding: calc(7vh + 30px) 6vw 0.5rem;
 		position: relative;
 		background-color: #ede0b8;
-		background-image: linear-gradient(rgba(237,224,184,0.65), rgba(237,224,184,0.65)), url('/images/noise.jpg');
+		background-image: linear-gradient(rgba(237,224,184,0.65), rgba(237,224,184,0.65)), var(--noise);
 		background-blend-mode: normal, soft-light;
+		--brush-color: #ede4c8;
+
 	}
 
 	.how h3 {
@@ -361,7 +445,7 @@
 		text-transform: uppercase;
 	}
 
-	.how > p {
+	.how > p:not(.card-caption) {
 		font-size: 1.15rem;
 		line-height: 1.8;
 		margin: 0 0 2.5rem 0;
@@ -438,8 +522,9 @@
 	.footer-jagged {
 		position: relative;
 		width: 100%;
-		height: 80px;
+		height: 82px;
 		margin-top: -80px;
+		margin-bottom: -2px;
 		z-index: 5;
 		background-color: #1a1209;
 		clip-path: polygon(
@@ -464,9 +549,9 @@
 		isolation: isolate;
 		width: 100%;
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		justify-content: flex-start;
-		padding: 3rem 0 4rem;
+		padding: 3rem 0 2rem;
 		margin: 0;
 		box-sizing: border-box;
 	}
@@ -557,10 +642,10 @@
 		line-height: 1.5;
 	}
 
-	footer img:not(.footer-polka) {
+	footer img {
 		height: 55px;
-		font-size: larger;
 		width: auto;
+		margin-bottom: -10px;
 	}
 
 	.section-split {
@@ -578,7 +663,7 @@
 		width: 40px;
 		align-self: stretch;
 		flex-shrink: 0;
-		background: url('/images/vertical-pipe.png') center / 100% 100% no-repeat;
+		background: url('/images/vertical-pipe.webp') center / 100% 100% no-repeat;
 		opacity: 0.6;
 	}
 
@@ -587,24 +672,31 @@
 		padding-left: 3vw;
 	}
 
+	.teeth-line {
+		position: absolute;
+		top: -110px;
+		left: 0;
+		width: 100%;
+		height: 200px;
+		pointer-events: none;
+		z-index: 6;
+		color: fff;
+	}
+
 	#s-what::before {
 		content: '';
 		position: absolute;
-		top: -40px;
+		top: -110px;
 		left: 0;
 		width: 100%;
-		height: 80px;
+		height: 200px;
 		pointer-events: none;
 		z-index: 5;
-		background-color: #f5edd0;
-		background-image: linear-gradient(rgba(245,237,208,0.65), rgba(245,237,208,0.65)), url('/images/noise.jpg');
+		background-color: #ecec77;
+		background-image: linear-gradient(rgba(236,236,188,0.65), rgba(236,236,188,0.65)), var(--noise);
 		background-size: auto, auto;
 		background-blend-mode: normal, soft-light;
-		clip-path: polygon(
-			0% 25%, 7% 0%, 15% 38%, 24% 5%, 33% 42%, 42% 8%, 51% 35%, 60% 2%, 69% 44%, 78% 12%, 86% 40%, 93% 5%, 100% 28%,
-			100% 78%,
-			93% 55%, 85% 90%, 76% 62%, 67% 96%, 57% 65%, 48% 98%, 38% 60%, 29% 94%, 20% 65%, 11% 96%, 5% 68%, 0% 75%
-		);
+		clip-path: url(#sand-top);
 	}
 
 	#s-what::after,
@@ -624,8 +716,8 @@
 	}
 
 	#s-what::after {
-		background-color: #f5edd0;
-		background-image: linear-gradient(to bottom, #f5edd0, #ede0b8), url('/images/noise.jpg');
+		background-color: #ececbc;
+		background-image: linear-gradient(to bottom, #ececbc, #ede0b8), var(--noise);
 		clip-path: polygon(
 			0% 30%, 6% 5%, 14% 45%, 22% 8%, 31% 50%, 40% 12%, 49% 42%, 58% 0%, 67% 38%, 76% 10%, 84% 48%, 92% 6%, 100% 35%,
 			100% 72%,
@@ -634,7 +726,7 @@
 	}
 	.how::after {
 		background-color: #ede0b8;
-		background-image: linear-gradient(to bottom, #ede0b8, #c8a878), url('/images/noise.jpg');
+		background-image: linear-gradient(to bottom, #ede0b8, #c8a878), var(--noise);
 		clip-path: polygon(
 			0% 15%, 7% 48%, 16% 4%, 25% 40%, 34% 0%, 43% 44%, 52% 8%, 61% 50%, 70% 5%, 79% 42%, 88% 10%, 95% 38%, 100% 18%,
 			100% 78%,
@@ -643,7 +735,7 @@
 	}
 	#s-real::after {
 		background-color: #c8a878;
-		background-image: linear-gradient(to bottom, #c8a878, #9a7040), url('/images/noise.jpg');
+		background-image: linear-gradient(to bottom, #c8a878, #9a7040), var(--noise);
 		clip-path: polygon(
 			0% 40%, 5% 8%, 13% 52%, 21% 15%, 30% 48%, 39% 5%, 48% 45%, 57% 12%, 66% 50%, 75% 8%, 83% 42%, 91% 0%, 100% 30%,
 			100% 68%,
@@ -652,7 +744,7 @@
 	}
 	#s-eligible::after {
 		background-color: #9a7040;
-		background-image: linear-gradient(to bottom, #9a7040, #c0a06a), url('/images/noise.jpg');
+		background-image: linear-gradient(to bottom, #9a7040, #c0a06a), var(--noise);
 		clip-path: polygon(
 			0% 22%, 8% 50%, 17% 10%, 26% 44%, 35% 2%, 44% 40%, 53% 15%, 62% 48%, 71% 6%, 80% 45%, 89% 12%, 96% 40%, 100% 20%,
 			100% 75%,
@@ -662,7 +754,7 @@
 
 	.carousel-section {
 		background-color: #c0a06a;
-		background-image: linear-gradient(rgba(192,160,106,0.88), rgba(192,160,106,0.88)), url('/images/noise.jpg');
+		background-image: linear-gradient(rgba(192,160,106,0.88), rgba(192,160,106,0.88)), var(--noise);
 		background-blend-mode: normal, soft-light;
 		padding-bottom: calc(4rem + 80px);
 		overflow: hidden;
@@ -813,7 +905,7 @@
 
 		.hero {
 			padding-top: 1.5vh;
-			padding-bottom: 6vh;
+			padding-bottom: 2vh;
 			justify-content: flex-start;
 		}
 
@@ -902,7 +994,7 @@
 			padding: 2rem 1rem 3rem;
 		}
 
-		footer img:not(.footer-polka) {
+		footer img {
 			height: 40px;
 		}
 
@@ -911,6 +1003,35 @@
 		}
 	}
 </style>
+
+<svg width="0" height="0" style="position:absolute">
+	<filter id="brush">
+		<feTurbulence type="turbulence" baseFrequency="0.003 0.06" numOctaves="3" seed="5" result="warp"/>
+		<feDisplacementMap in="SourceGraphic" in2="warp" scale="25" xChannelSelector="R" yChannelSelector="G"/>
+	</filter>
+	<clipPath id="sand-top" clipPathUnits="objectBoundingBox">
+		<path d="
+			M 0,0.25
+			C 0.04,0.22 0.06,0.04 0.10,0.06
+			C 0.14,0.08 0.16,0.35 0.21,0.36
+			C 0.26,0.37 0.28,0.08 0.34,0.07
+			C 0.40,0.06 0.42,0.36 0.48,0.35
+			C 0.54,0.34 0.56,0.04 0.62,0.04
+			C 0.68,0.04 0.70,0.38 0.76,0.37
+			C 0.82,0.36 0.84,0.10 0.90,0.08
+			C 0.94,0.07 0.97,0.24 1.0,0.26
+			L 1,0.78
+			C 0.97,0.72 0.94,0.54 0.90,0.56
+			C 0.85,0.58 0.83,0.88 0.76,0.90
+			C 0.69,0.92 0.67,0.60 0.60,0.62
+			C 0.53,0.64 0.50,0.96 0.44,0.95
+			C 0.38,0.94 0.36,0.58 0.29,0.60
+			C 0.22,0.62 0.19,0.92 0.13,0.94
+			C 0.07,0.96 0.04,0.68 0,0.72
+			Z
+		"/>
+	</clipPath>
+</svg>
 
 <div class="page-root">
 
@@ -921,6 +1042,8 @@
 			src={f.src}
 			alt="strandbeest fossil"
 			title="strandbeest fossil"
+			loading="lazy"
+			decoding="async"
 			style="top:{f.top}; left:{f.left}; width:{f.size}px; transform:rotate({f.rot}deg);"
 		/>
 	{/each}
@@ -929,7 +1052,7 @@
 <div class="hero">
 	<button class="photo-corner" class:ready={photoReady} on:animationend={() => photoReady = true} on:click={() => photoOpen = true} aria-label="View Scheveningen">
 		<div class="photo-frame">
-			<img src="/images/scheveningen-peir.png" alt="Scheveningen pier">
+			<img src="/images/scheveningen-peir.webp" alt="Scheveningen pier" loading="lazy" decoding="async">
 			<span>Scheveningen</span>
 		</div>
 	</button>
@@ -942,19 +1065,29 @@
 		<p>Coming soon</p>
 		<p>Watch me develop in <strong>#beest</strong> on Slack <br>Nothing here is finalised.</p>
 	</a>
-	<img src="https://icons.hackclub.com/api/icons/000000/down.svg" class="scroll" alt="scroll down icon">
+	<span class="scroll" style="font-size: 2rem; color: #000; text-align: center; display: flex; align-items: center; justify-content: center;">↓</span>
 </div>
 
 {#if photoOpen}
 	<div class="photo-modal-backdrop" on:click={() => photoOpen = false}>
 		<div class="photo-modal" on:click|stopPropagation>
-			<img src="/images/scheveningen-peir.png" alt="Scheveningen pier">
+			<img src="/images/scheveningen-peir.webp" alt="Scheveningen pier">
 			<p>The event will be at Scheveningen, a cultural center of the Netherlands and the home of the StrandBeests</p>
 		</div>
 	</div>
 {/if}
 
 <div class="section" id="s-what">
+<svg class="teeth-line" viewBox="0 0 1000 200" preserveAspectRatio="none">
+	<path
+		d="M0,55 C40,48 55,8 100,12 C145,16 155,68 210,72 C265,76 280,18 340,14 C400,10 420,74 480,70 C540,66 560,10 620,8 C680,6 700,78 760,74 C820,70 840,20 900,16 C940,13 975,48 1000,52"
+		fill="none"
+		stroke="#b3ad7d"
+		stroke-width="3"
+		stroke-linejoin="round"
+		vector-effect="non-scaling-stroke"
+	/>
+</svg>
 <h3>What is this?</h3>
 	<div class="section-row">
 		<p>Beest is a Hack Club program. A Beest (<a href="https://www.strandbeest.com/">Strandbeest</a>) is a sail powered mechanical animal constructed of just fabric, plastic pipes, zip ties and recycled plastic bottles. I think they are the coolest thing ever, and if you agree, you can join me in building one! Everything (including flights, food and accommodation) is totally free for teenagers who qualify by building a project. From [Date] to [Date] you and [X] teens will fly to the Netherlands to build a StrandBeest, present it to the creator of strandbeests and watch him exhibit the full collection!</p>
@@ -968,16 +1101,14 @@
 		{#each steps as step, i}
 			<div class="panel" class:visible={i < visibleCount}>
 				<div class="panel-img">
-					<img src={step.img} alt={step.alt} />
-					<span class="panel-num">{i + 1}</span>
+					<img src={step.img} alt={step.alt} loading="lazy" decoding="async" />
 				</div>
 				<div class="panel-caption">{step.caption}</div>
 			</div>
 		{/each}
 		<div class="panel mobile-only">
 			<div class="panel-img">
-				<img src="https://manifesto.hackclub.com/hero/26.webp" alt="Stick around for the community" />
-				<span class="panel-num">6</span>
+				<img src="https://manifesto.hackclub.com/hero/26.webp" alt="Stick around for the community" loading="lazy" decoding="async" />
 			</div>
 			<div class="panel-caption">Stick around for the community</div>
 		</div>
@@ -988,18 +1119,18 @@
 <div class="section" id="s-real">
 <h3>Is Hack Club for real?</h3>
 	<p>Yes - and we do this kind of stuff all the time! Hack Club is a non-profit organization and a community of 100k+ teenage makers. We run events online and in-person that reward people making open source projects. Thanks to our donors we are always running crazy events at no cost for teens. Previously we ran;</p>
-	<img src="/images/previously.png" alt="three cards showing past hackathons" style="margin-top: 2rem; max-width: 100%;">
+	<img src="/images/previously.webp" alt="three cards showing past hackathons" loading="lazy" decoding="async" style="margin-top: 2rem; width: 100%;">
 </div>
 
 <div class="section section-split" id="s-eligible">
 <div class="split-left">
-		<h3>Am I ellegible?</h3>
-		<p><b>If you are a teen, yes! </b> The only criteria is being a teenager and building a real open-source software/hardware project for Y hours. We can help you get a visa, cover the cost of your flight or hop on a call with parents! If you aren't sure, join the slack and ask - and if you can't make it, stay for the community! Hack Club is much bigger than Beest, we run events like this every few weeks 😯    </p>
+		<h3>Am I Eligible?</h3>
+		<p><b>If you are a teen, yes! </b> The only criteria is being a teenager and building a real open-source software/hardware project for Y hours. We can help you get a visa, cover the cost of your flight or hop on a call with parents! If you aren't sure, join the slack and ask - and if you can't make it, stay for the community! Hack Club is much bigger than Beest, we run events like this every few weeks!</p>
 	</div>
 	<div class="split-divider"></div>
 	<div class="split-right">
 		<h3>I can't make it :/</h3>
-		<p>You can still win! Alongside the event you can get prizes for logging hours. We will have a shop packed with rewards like laptops, tablets, headphones and merch. These will be delivered straight to you and require no money transfer! Everything is earned just by working on a project. You can see some of the prize selection here ⬇️</p>
+		<p>You can still win! Alongside the event you can get prizes for logging hours. We will have a shop packed with rewards like laptops, tablets, headphones and merch. These will be delivered straight to you and require no money transfer! Everything is earned just by working on a project. You can see some of the prize selection here ↓</p>
 	</div>
 </div>
 
@@ -1009,7 +1140,7 @@
 	<div class="carousel-belt-bg" class:running={carouselReady}>
 		{#each [...shopItems, ...shopItems, ...shopItems, ...shopItems] as item}
 			<div class="carousel-card">
-				<img src={item.src} alt={item.caption}>
+				<img src={item.src} alt={item.caption} loading="lazy" decoding="async">
 				<p class="card-caption">{item.caption}</p>
 			</div>
 		{/each}
@@ -1022,7 +1153,7 @@
 	<div class="carousel-belt" class:running={carouselReady} class:paused={carouselPaused}>
 		{#each [...shopItems, ...shopItems] as item}
 			<div class="carousel-card">
-				<img src={item.src} alt={item.caption}>
+				<img src={item.src} alt={item.caption} loading="lazy" decoding="async">
 				<p class="card-caption">{item.caption}</p>
 			</div>
 		{/each}
