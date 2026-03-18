@@ -397,6 +397,8 @@
 	.panel:nth-child(4) { left: 58%;  top: 100px; --rot: 4deg;  transform: rotate(4deg);  z-index: 0; }
 	.panel:nth-child(5) { left: 78%;  top: 60px;  --rot: -3deg; transform: rotate(-3deg); z-index: 3; }
 
+	.mobile-only { display: none; }
+
 	.panel.visible { animation: panel-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
 
 	.panel-img {
@@ -810,16 +812,23 @@
 		}
 
 		.hero {
-			padding-top: 6vh;
+			padding-top: 1.5vh;
 			padding-bottom: 6vh;
 			justify-content: flex-start;
 		}
 
-		.hero h1 {
-			margin-top: auto;
+		.flag {
+			display: none;
+		}
+
+		.hero h2 {
+			max-width: 60%;
 		}
 
 		.coming-soon {
+			position: absolute;
+			bottom: 15%;
+			left: 6vw;
 			white-space: normal;
 			padding: 1em 1.5em;
 		}
@@ -853,7 +862,7 @@
 		.comic {
 			height: auto;
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr;
 			gap: 0.75rem;
 			margin: 1rem 0 0;
 		}
@@ -868,10 +877,8 @@
 			animation: none !important;
 		}
 
-		.panel:nth-child(5) {
-			grid-column: 1 / -1;
-			width: 50%;
-			margin: 0 auto;
+		.mobile-only {
+			display: block;
 		}
 
 		.panel-num {
@@ -967,6 +974,13 @@
 				<div class="panel-caption">{step.caption}</div>
 			</div>
 		{/each}
+		<div class="panel mobile-only">
+			<div class="panel-img">
+				<img src="https://manifesto.hackclub.com/hero/26.webp" alt="Stick around for the community" />
+				<span class="panel-num">6</span>
+			</div>
+			<div class="panel-caption">Stick around for the community</div>
+		</div>
 	</div>
 	
 </section>
