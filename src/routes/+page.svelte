@@ -1092,6 +1092,10 @@
 		.fossils {
 			display: none;
 		}
+
+		#s-what::before {
+			clip-path: url(#sand-top-mobile);
+		}
 	}
 </style>
 
@@ -1119,6 +1123,17 @@
 			C 0.38,0.94 0.36,0.58 0.29,0.60
 			C 0.22,0.62 0.19,0.92 0.13,0.94
 			C 0.07,0.96 0.04,0.68 0,0.72
+			Z
+		"/>
+	</clipPath>
+	<clipPath id="sand-top-mobile" clipPathUnits="objectBoundingBox">
+		<path d="
+			M 0,0.45
+			C 0.15,0.40 0.30,0.05 0.50,0.05
+			C 0.70,0.05 0.85,0.40 1.0,0.45
+			L 1,0.80
+			C 0.85,0.85 0.70,0.98 0.50,0.98
+			C 0.30,0.98 0.15,0.85 0,0.80
 			Z
 		"/>
 	</clipPath>
