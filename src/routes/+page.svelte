@@ -663,6 +663,7 @@
 		background-image: linear-gradient(rgba(192,160,106,0.88), rgba(192,160,106,0.88)), url('/images/noise.jpg');
 		background-blend-mode: normal, soft-light;
 		padding-bottom: calc(4rem + 80px);
+		overflow: hidden;
 	}
 
 	.shop-carousel {
@@ -810,7 +811,12 @@
 
 		.hero {
 			padding-top: 6vh;
+			padding-bottom: 6vh;
 			justify-content: flex-start;
+		}
+
+		.hero h1 {
+			margin-top: auto;
 		}
 
 		.coming-soon {
@@ -846,10 +852,10 @@
 
 		.comic {
 			height: auto;
-			display: flex;
-			flex-direction: column;
-			gap: 1.5rem;
-			margin: 1.5rem 0 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.75rem;
+			margin: 1rem 0 0;
 		}
 
 		.panel {
@@ -860,6 +866,21 @@
 			transform: none !important;
 			opacity: 1 !important;
 			animation: none !important;
+		}
+
+		.panel:nth-child(5) {
+			grid-column: 1 / -1;
+			width: 50%;
+			margin: 0 auto;
+		}
+
+		.panel-num {
+			font-size: 2rem;
+		}
+
+		.panel-caption {
+			font-size: 0.7rem;
+			padding: 0.4rem 0.5rem;
 		}
 
 		.section-row,
