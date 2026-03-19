@@ -351,6 +351,12 @@
 		transform: translateX(-50%);
 		width: 40px;
 		height: 40px;
+		font-size: 2rem;
+		color: #000;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		animation: bounce 2s infinite, scroll-enlarge 0.5s ease 5s forwards;
 	}
 
@@ -1324,7 +1330,7 @@
 		<h1>BUILD A BEEST</h1>
 		<h2><u>Code a project, Fly to the Netherlands, Build a mechanical animal!</u></h2>
 	</div>
-	<span class="scroll" style="font-size: 2rem; color: #000; text-align: center; display: flex; align-items: center; justify-content: center;">↓</span>
+	<span class="scroll">↓</span>
 </div>
 
 {#if photoOpen}
