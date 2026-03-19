@@ -206,7 +206,7 @@
 
 <svelte:head>
 	<title>Beest</title>
-	<link rel="preload" as="image" type="image/png" href="/images/hero.png" fetchpriority="high">
+	<link rel="preload" as="image" type="image/webp" href="/images/hero-opt.webp" fetchpriority="high">
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/OrelegaOne-Regular.woff2" crossorigin>
 	<link rel="preload" as="font" type="font/woff2" href="/fonts/OnlyTrue-Neutral.woff2" crossorigin>
 </svelte:head>
@@ -277,7 +277,7 @@
 		position: relative;
 		z-index: 8;
 		background-color: #8eadcf;
-		background-image: url('/images/hero.png');
+		background-image: url('/images/hero-opt.webp');
 		background-size: cover;
 		background-position: center;
 	}
@@ -292,7 +292,7 @@
 	}
 
 	.flag img {
-		width: 260px;
+		width: min(260px, 12vh);
 		display: block;
 	}
 
@@ -333,7 +333,7 @@
 
 	h2 {
 		margin-top: 0.1em;
-		margin-left: -4.5vw;	
+		margin-left: -4.5vw;
 	}
 
 	.scroll {
@@ -962,6 +962,7 @@
 
 	.page-root {
 		position: relative;
+		overflow-x: clip;
 	}
 
 	.fossils {
@@ -991,17 +992,24 @@
 			font-size: 13vw;
 			white-space: normal;
 			line-height: 0.95;
+			margin-left: 0;
+			margin-top: 10vh;
 		}
 
 		h2 {
 			font-size: 1rem;
 			line-height: 1.4;
+			margin-left: 0;
 		}
 
 		.hero {
-			padding-top: 1.5vh;
-			padding-bottom: 2vh;
+			height: auto;
+			padding: 0 5vw 2vh;
 			justify-content: flex-start;
+			background-size: 100% auto;
+			background-position: top center;
+			background-repeat: no-repeat;
+			padding-top: 56vw;
 		}
 
 		.flag {
@@ -1009,7 +1017,7 @@
 		}
 
 		.hero h2 {
-			max-width: 60%;
+			max-width: 80%;
 		}
 
 		.coming-soon {
@@ -1029,13 +1037,20 @@
 
 		.section h3,
 		.how h3 {
-			font-size: 1.6rem;
+			font-size: 1.4rem;
+			margin-left: 0 !important;
 		}
 
 		.section p,
 		.how > p {
-			font-size: 1rem;
-			line-height: 1.7;
+			font-size: 0.95rem;
+			line-height: 1.4;
+		}
+
+		.section p::before,
+		.how > p::before {
+			left: -20px;
+			right: -20px;
 		}
 
 		.how {
@@ -1046,7 +1061,7 @@
 			height: auto;
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
-			gap: 0.75rem;
+			gap: 0.5rem;
 			margin: 1rem 0 0;
 		}
 
@@ -1065,18 +1080,63 @@
 		}
 
 		.panel-num {
-			font-size: 2rem;
+			font-size: 1.5rem;
+			top: 3px;
+			left: 5px;
 		}
 
 		.panel-caption {
-			font-size: 0.7rem;
-			padding: 0.4rem 0.5rem;
+			font-size: 0.6rem;
+			padding: 0.3rem 0.4rem;
+		}
+
+		.panel-img {
+			border-bottom-width: 2px;
+		}
+
+		.panel {
+			border-width: 2px;
 		}
 
 		.section-row,
 		.section-split {
 			flex-direction: column;
 			gap: 1rem;
+		}
+
+		.split-divider {
+			display: none;
+		}
+
+		.earn-prizes-title {
+			font-size: 8vw;
+			transform: translateY(10rem);
+		}
+
+		.orph-runner {
+			height: 90px;
+		}
+
+		.carousel-card {
+			width: 140px;
+			padding: 0.6rem 0.6rem 0.5rem;
+		}
+
+		.carousel-card img {
+			height: 115px;
+		}
+
+		.carousel-card .card-caption {
+			font-size: 0.75rem;
+			margin: 0.4rem 0 0;
+		}
+
+		.video-embed {
+			margin-top: 2rem;
+		}
+
+		.scroll {
+			bottom: 30px;
 		}
 
 		footer {
@@ -1086,7 +1146,11 @@
 		}
 
 		footer img {
-			height: 40px;
+			height: 35px;
+		}
+
+		footer p {
+			font-size: 0.75rem !important;
 		}
 
 		.fossils {
@@ -1095,6 +1159,10 @@
 
 		#s-what::before {
 			clip-path: url(#sand-top-mobile);
+		}
+
+		.teeth-line {
+			display: none;
 		}
 	}
 </style>
@@ -1106,23 +1174,25 @@
 	</filter>
 	<clipPath id="sand-top" clipPathUnits="objectBoundingBox">
 		<path d="
-			M 0,0.25
-			C 0.04,0.22 0.06,0.04 0.10,0.06
-			C 0.14,0.08 0.16,0.35 0.21,0.36
-			C 0.26,0.37 0.28,0.08 0.34,0.07
-			C 0.40,0.06 0.42,0.36 0.48,0.35
-			C 0.54,0.34 0.56,0.04 0.62,0.04
-			C 0.68,0.04 0.70,0.38 0.76,0.37
-			C 0.82,0.36 0.84,0.10 0.90,0.08
-			C 0.94,0.07 0.97,0.24 1.0,0.26
-			L 1,0.78
-			C 0.97,0.72 0.94,0.54 0.90,0.56
-			C 0.85,0.58 0.83,0.88 0.76,0.90
-			C 0.69,0.92 0.67,0.60 0.60,0.62
-			C 0.53,0.64 0.50,0.96 0.44,0.95
-			C 0.38,0.94 0.36,0.58 0.29,0.60
-			C 0.22,0.62 0.19,0.92 0.13,0.94
-			C 0.07,0.96 0.04,0.68 0,0.72
+			M 0,0.28
+			C 0.03,0.24 0.05,0.06 0.09,0.08
+			C 0.13,0.10 0.14,0.30 0.19,0.32
+			C 0.23,0.34 0.26,0.12 0.31,0.10
+			C 0.35,0.08 0.38,0.40 0.44,0.38
+			C 0.49,0.36 0.52,0.03 0.56,0.05
+			C 0.60,0.07 0.61,0.28 0.66,0.34
+			C 0.71,0.40 0.74,0.14 0.79,0.11
+			C 0.83,0.09 0.86,0.32 0.91,0.30
+			C 0.95,0.28 0.97,0.18 1.0,0.22
+			L 1,0.76
+			C 0.97,0.70 0.95,0.58 0.91,0.60
+			C 0.86,0.63 0.84,0.90 0.79,0.88
+			C 0.74,0.86 0.72,0.56 0.66,0.58
+			C 0.61,0.60 0.59,0.94 0.53,0.96
+			C 0.48,0.98 0.45,0.62 0.39,0.64
+			C 0.34,0.66 0.31,0.88 0.25,0.92
+			C 0.20,0.95 0.16,0.66 0.11,0.70
+			C 0.07,0.73 0.04,0.90 0,0.74
 			Z
 		"/>
 	</clipPath>
@@ -1187,7 +1257,7 @@
 <div class="section" id="s-what">
 <svg class="teeth-line" viewBox="0 0 1000 200" preserveAspectRatio="none">
 	<path
-		d="M0,55 C40,48 55,8 100,12 C145,16 155,68 210,72 C265,76 280,18 340,14 C400,10 420,74 480,70 C540,66 560,10 620,8 C680,6 700,78 760,74 C820,70 840,20 900,16 C940,13 975,48 1000,52"
+		d="M0,56 C30,48 50,12 90,16 C130,20 140,60 190,64 C230,68 260,24 310,20 C350,16 380,80 440,76 C490,72 520,6 560,10 C600,14 610,56 660,68 C710,80 740,28 790,22 C830,18 860,64 910,60 C950,56 970,36 1000,44"
 		fill="none"
 		stroke="#c9a474"
 		stroke-width="3"
