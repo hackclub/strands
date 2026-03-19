@@ -2,6 +2,46 @@
 	import { onMount } from 'svelte';
 
 	let email = '';
+	let rsvpStatus = '';
+	let rsvpSubmitting = false;
+
+	async function handleRsvp() {
+		const trimmed = email.trim().toLowerCase();
+		if (!trimmed) {
+			rsvpStatus = 'invalid';
+			return;
+		}
+		const emailRe = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+		if (trimmed.length > 254 || !emailRe.test(trimmed)) {
+			rsvpStatus = 'invalid';
+			return;
+		}
+		rsvpSubmitting = true;
+		rsvpStatus = '';
+		try {
+			const res = await fetch('/api/rsvp', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email: trimmed })
+			});
+			const data = await res.json();
+			if (res.ok) {
+				rsvpStatus = 'success';
+				email = '';
+			} else if (data.error === 'duplicate') {
+				rsvpStatus = 'duplicate';
+			} else if (res.status === 400) {
+				rsvpStatus = 'invalid';
+			} else {
+				rsvpStatus = 'error';
+			}
+		} catch {
+			rsvpStatus = 'error';
+		} finally {
+			rsvpSubmitting = false;
+		}
+	}
+
 	let photoOpen = false;
 	let photoReady = false;
 	let carouselReady = false;
@@ -357,6 +397,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		z-index: 100;
 		animation: bounce 2s infinite, scroll-enlarge 0.5s ease 5s forwards;
 	}
 
@@ -898,6 +939,11 @@
 		transform-origin: bottom center;
 	}
 
+	.orph-frame {
+		height: 140px;
+		width: auto;
+	}
+
 	.carousel-belt {
 		display: flex;
 		gap: 1.5rem;
@@ -1001,6 +1047,111 @@
 		text-align: center;
 	}
 
+	.rsvp-form {
+		position: absolute;
+		bottom: 16vh;
+		left: 1.2vw;
+		z-index: 50;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		background: rgba(0, 0, 0, 0.9);
+		padding: 1.2rem 1.5rem;
+		border-radius: 8px;
+	}
+
+	.rsvp-label {
+		font-family: 'OnlyTrue', sans-serif;
+		font-size: 2.8rem;
+		color: #fff;
+		font-weight: 1;
+		letter-spacing: 0.04em;
+	}
+
+	.rsvp-row {
+		display: flex;
+		gap: 0;
+	}
+
+	.rsvp-input {
+		font-family: 'OrelegaOne', Georgia, serif;
+		font-size: 1.2rem;
+		padding: 0.7rem 1rem;
+		border: 2px solid #000;
+		border-right: none;
+		border-radius: 4px 0 0 4px;
+		background: #fff;
+		color: #1a0a00;
+		outline: none;
+		width: 300px;
+	}
+
+	.rsvp-input:focus {
+		background: #fff;
+		border-color: #ec3750;
+	}
+
+	.rsvp-input::placeholder {
+		color: #9a8a7a;
+	}
+
+	.rsvp-btn {
+		font-family: 'OnlyTrue', sans-serif;
+		font-size: 1.2rem;
+		padding: 0.7rem 1.4rem;
+		border: 2px solid #000;
+		border-radius: 0 4px 4px 0;
+		background: #ec3750;
+		color: #000;
+		cursor: pointer;
+		letter-spacing: 0.04em;
+		transition: background 0.15s;
+	}
+
+	.rsvp-btn:hover:not(:disabled) {
+		background: #d42e45;
+	}
+
+	.rsvp-btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	.rsvp-msg {
+		margin: 0.2rem 0 0;
+		font-size: 0.9rem;
+		font-family: 'OrelegaOne', Georgia, serif;
+	}
+
+	.rsvp-ok {
+		color: #6fdf6f;
+	}
+
+	.rsvp-err {
+		color: #ff6b7a;
+	}
+
+	.rsvp-bottom-section {
+		background-color: #c0a06a;
+		background-image: linear-gradient(rgba(192,160,106,0.88), rgba(192,160,106,0.88)), var(--noise);
+		background-blend-mode: normal, soft-light;
+		display: flex;
+		justify-content: center;
+		padding: 3rem 2rem calc(4rem + 80px);
+		position: relative;
+		z-index: 15;
+	}
+
+	.rsvp-form-bottom {
+		position: relative;
+		bottom: auto;
+		left: auto;
+		z-index: 20;
+		background: rgba(0, 0, 0, 0.9);
+		padding: 1.2rem 1.5rem;
+		border-radius: 8px;
+	}
+
 	@media (max-width: 768px) {
 		/* --- Hero --- */
 		.hero {
@@ -1064,6 +1215,19 @@
 			display: none;
 		}
 
+		.rsvp-form {
+			position: relative;
+			bottom: auto;
+			left: auto;
+			padding: 0 5vw;
+			margin-top: 1.2rem;
+		}
+
+		.rsvp-input {
+			width: 100%;
+			flex: 1;
+		}
+
 		/* --- Remove noise grain on mobile --- */
 		:global(body) {
 			background-image: linear-gradient(rgba(245,233,216,0.88), rgba(245,233,216,0.88));
@@ -1073,7 +1237,8 @@
 		#s-real,
 		#s-eligible,
 		.how,
-		.carousel-section {
+		.carousel-section,
+		.rsvp-bottom-section {
 			background-image: none;
 		}
 
@@ -1222,6 +1387,10 @@
 			height: 90px;
 		}
 
+		.orph-frame {
+			height: 90px;
+		}
+
 		.carousel-card {
 			width: 140px;
 			padding: 0.6rem 0.6rem 0.5rem;
@@ -1330,6 +1499,33 @@
 		<h1>BUILD A BEEST</h1>
 		<h2><u>Code a project, Fly to the Netherlands, Build a mechanical animal!</u></h2>
 	</div>
+	<form class="rsvp-form" on:submit|preventDefault={handleRsvp}>
+		<label for="rsvp-email" class="rsvp-label">RSVP</label>
+		<div class="rsvp-row">
+			<input
+				id="rsvp-email"
+				type="email"
+				bind:value={email}
+				placeholder="your@email.com"
+				class="rsvp-input"
+				maxlength="254"
+				autocomplete="email"
+				disabled={rsvpSubmitting}
+			/>
+			<button type="submit" class="rsvp-btn" disabled={rsvpSubmitting}>
+				{rsvpSubmitting ? '...' : 'GO'}
+			</button>
+		</div>
+		{#if rsvpStatus === 'success'}
+			<p class="rsvp-msg rsvp-ok">Check your email!</p>
+		{:else if rsvpStatus === 'duplicate'}
+			<p class="rsvp-msg rsvp-warn">RSVP already found!</p>
+		{:else if rsvpStatus === 'invalid'}
+			<p class="rsvp-msg rsvp-err">That doesn't look like a valid email.</p>
+		{:else if rsvpStatus === 'error'}
+			<p class="rsvp-msg rsvp-err">Something went wrong. Try again later.</p>
+		{/if}
+	</form>
 	<span class="scroll">↓</span>
 </div>
 
@@ -1422,12 +1618,16 @@
 </div>
 <div class="shop-carousel" bind:this={shopCarouselEl}><!-- on:mouseenter={pauseCarousel} on:mouseleave={resumeCarousel} -->
 	{#if orphReady}
-		<img
-			src={orphFrames[currentOrphFrame].src}
-			class="orph-runner"
-			alt=""
-			style="transform: translateY({-jumpIntensity * 30}px) scaleY({1 + jumpIntensity * 0.15})"
-		>
+		<div class="orph-runner" style="transform: translateY({-jumpIntensity * 30}px) scaleY({1 + jumpIntensity * 0.15})">
+			{#each orphFrames as frame, i}
+				<img
+					src={frame.src}
+					alt=""
+					class="orph-frame"
+					style="display: {i === currentOrphFrame ? 'block' : 'none'}"
+				>
+			{/each}
+		</div>
 	{/if}
 	<div class="carousel-belt" class:running={carouselReady} class:paused={carouselPaused}>
 		{#each [...shopItems, ...shopItems] as item}
@@ -1438,6 +1638,35 @@
 		{/each}
 	</div>
 </div>
+</div>
+<div class="rsvp-bottom-section">
+	<form class="rsvp-form rsvp-form-bottom" on:submit|preventDefault={handleRsvp}>
+		<label for="rsvp-email-bottom" class="rsvp-label">RSVP</label>
+		<div class="rsvp-row">
+			<input
+				id="rsvp-email-bottom"
+				type="email"
+				bind:value={email}
+				placeholder="your@email.com"
+				class="rsvp-input"
+				maxlength="254"
+				autocomplete="email"
+				disabled={rsvpSubmitting}
+			/>
+			<button type="submit" class="rsvp-btn" disabled={rsvpSubmitting}>
+				{rsvpSubmitting ? '...' : 'GO'}
+			</button>
+		</div>
+		{#if rsvpStatus === 'success'}
+			<p class="rsvp-msg rsvp-ok">Check your email!</p>
+		{:else if rsvpStatus === 'duplicate'}
+			<p class="rsvp-msg rsvp-warn">RSVP already found!</p>
+		{:else if rsvpStatus === 'invalid'}
+			<p class="rsvp-msg rsvp-err">That doesn't look like a valid email.</p>
+		{:else if rsvpStatus === 'error'}
+			<p class="rsvp-msg rsvp-err">Something went wrong. Try again later.</p>
+		{/if}
+	</form>
 </div>
 <div class="footer-jagged"></div>
 <footer>
