@@ -276,10 +276,18 @@
 		padding: 1vh 6vw 3vh 6vw;
 		position: relative;
 		z-index: 8;
-		background-color: #8eadcf;
+		background-color: #919ca8;
 		background-image: url('/images/hero-opt.webp');
 		background-size: cover;
 		background-position: center;
+	}
+
+	.hero-img-mobile {
+		display: none;
+	}
+
+	.hero-content-mobile {
+		display: contents;
 	}
 
 	.flag {
@@ -988,75 +996,159 @@
 	}
 
 	@media (max-width: 768px) {
+		/* --- Hero --- */
+		.hero {
+			height: auto;
+			padding: 0 0 3rem 0;
+			justify-content: flex-start;
+			background: #e6cead;
+			background-image: none;
+		}
+
+		.hero-img-mobile {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		.hero-content-mobile {
+			padding: 1rem 7vw 4rem;
+			background-color: #c8b48a;
+		}
+
 		h1 {
-			font-size: 13vw;
+			font-size: 12vw;
 			white-space: normal;
 			line-height: 0.95;
-			margin-left: 0;
-			margin-top: 10vh;
+			margin: 0 0 0.4rem 0;
+			padding: 0 5vw;
 		}
 
 		h2 {
 			font-size: 1rem;
-			line-height: 1.4;
-			margin-left: 0;
+			line-height: 1.3;
+			margin: 0;
+			padding: 0 5vw;
 		}
 
-		.hero {
-			height: auto;
-			padding: 0 5vw 2vh;
-			justify-content: flex-start;
-			background-size: 100% auto;
-			background-position: top center;
-			background-repeat: no-repeat;
-			padding-top: 56vw;
+		.hero h2 {
+			max-width: 90%;
 		}
 
 		.flag {
 			display: none;
 		}
 
-		.hero h2 {
-			max-width: 80%;
-		}
-
 		.coming-soon {
-			margin-left: 0;
+			margin: 0.5rem 0 0 0;
 		}
 
-		.coming-soon p:first-child { font-size: 1.1rem; }
-		.coming-soon p:last-child  { font-size: 0.85rem; }
+		.coming-soon br {
+			display: none;
+		}
+
+		.coming-soon p:first-child { font-size: 1rem; }
+		.coming-soon p:last-child  { font-size: 0.8rem; }
 
 		.photo-corner {
 			display: none;
 		}
 
+		.scroll {
+			display: none;
+		}
+
+		/* --- Remove noise grain on mobile --- */
+		:global(body) {
+			background-image: linear-gradient(rgba(245,233,216,0.88), rgba(245,233,216,0.88));
+		}
+
+		#s-what,
+		#s-real,
+		#s-eligible,
+		.how,
+		.carousel-section {
+			background-image: none;
+		}
+
+		/* --- Sand transition --- */
+		#s-what {
+			padding-top: 2.5rem;
+		}
+
+		#s-what::before {
+			top: -25px;
+			height: 50px;
+			clip-path: url(#sand-top-mobile);
+		}
+
+		#s-what::before {
+			background-image: linear-gradient(rgba(224,186,141,0.65), rgba(212,159,93,0.65));
+		}
+
+		#s-what::after {
+			height: 40px;
+			bottom: -20px;
+			background-image: linear-gradient(to bottom, #e0ba8d, #ede0b8);
+		}
+		.how::after {
+			height: 40px;
+			bottom: -20px;
+			background-image: linear-gradient(to bottom, #ede0b8, #c8a878);
+		}
+		#s-real::after {
+			height: 40px;
+			bottom: -20px;
+			background-image: linear-gradient(to bottom, #c8a878, #9a7040);
+		}
+		#s-eligible::after {
+			height: 40px;
+			bottom: -20px;
+			background-image: linear-gradient(to bottom, #9a7040, #c0a06a);
+		}
+
+		.teeth-line {
+			display: none;
+		}
+
+		/* --- Sections --- */
 		.section {
-			padding: 3rem 5vw;
+			padding: 2rem 7vw;
 		}
 
 		.section h3,
 		.how h3 {
-			font-size: 1.4rem;
+			font-size: 1.3rem;
 			margin-left: 0 !important;
 		}
 
 		.section p,
 		.how > p {
-			font-size: 0.95rem;
-			line-height: 1.4;
+			font-size: 0.9rem;
+			line-height: 1.35;
+			padding: 0 2vw;
 		}
 
 		.section p::before,
 		.how > p::before {
-			left: -20px;
-			right: -20px;
+			left: -15px;
+			right: -15px;
 		}
 
 		.how {
-			padding: 3rem 5vw 1rem;
+			padding: 2rem 7vw 1rem;
 		}
 
+		/* --- Video --- */
+		.video-embed {
+			margin-top: 1.5rem;
+		}
+
+		.video-embed iframe {
+			/* Use nocookie domain for mobile compat */
+		}
+
+		/* --- Comic panels --- */
 		.comic {
 			height: auto;
 			display: grid;
@@ -1073,6 +1165,7 @@
 			transform: none !important;
 			opacity: 1 !important;
 			animation: none !important;
+			border-width: 2px;
 		}
 
 		.mobile-only {
@@ -1094,10 +1187,7 @@
 			border-bottom-width: 2px;
 		}
 
-		.panel {
-			border-width: 2px;
-		}
-
+		/* --- Split sections --- */
 		.section-row,
 		.section-split {
 			flex-direction: column;
@@ -1108,9 +1198,18 @@
 			display: none;
 		}
 
+		/* --- Carousel --- */
+		.carousel-section {
+			padding-bottom: calc(2rem + 80px);
+		}
+
 		.earn-prizes-title {
 			font-size: 8vw;
-			transform: translateY(10rem);
+			transform: translateY(5rem);
+		}
+
+		.shop-carousel-bg {
+			top: 14rem;
 		}
 
 		.orph-runner {
@@ -1131,14 +1230,7 @@
 			margin: 0.4rem 0 0;
 		}
 
-		.video-embed {
-			margin-top: 2rem;
-		}
-
-		.scroll {
-			bottom: 30px;
-		}
-
+		/* --- Footer --- */
 		footer {
 			flex-wrap: wrap;
 			gap: 0.5rem;
@@ -1154,14 +1246,6 @@
 		}
 
 		.fossils {
-			display: none;
-		}
-
-		#s-what::before {
-			clip-path: url(#sand-top-mobile);
-		}
-
-		.teeth-line {
 			display: none;
 		}
 	}
@@ -1226,6 +1310,7 @@
 </div>
 
 <div class="hero">
+	<img class="hero-img-mobile" src="/images/hero-opt.webp" alt="Strandbeest on the beach" />
 	<button class="photo-corner" class:ready={photoReady} on:animationend={() => photoReady = true} on:click={() => photoOpen = true} aria-label="View Scheveningen">
 		<div class="photo-frame">
 			<img src="/images/scheveningen-peir.webp" alt="Scheveningen pier" loading="lazy" decoding="async">
@@ -1235,13 +1320,10 @@
 	<a href="https://hackclub.com" class="flag">
 		<img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="Hack Club">
 	</a>
-	<h1>BUILD A BEEST</h1>
-	<h2><u>Code a project, Fly to the Netherlands, Build a mechanical animal!</u></h2>
-	<a href="https://hackclub.enterprise.slack.com/archives/C0ALJ3NT1D0" class="coming-soon">
-		<br><br>
-		<p>Coming soon!</p><br>
-		<p>Watch me develop in <strong>#beest</strong><br> on Slack. Nothing here is finalised.</p>
-	</a>
+	<div class="hero-content-mobile">
+		<h1>BUILD A BEEST</h1>
+		<h2><u>Code a project, Fly to the Netherlands, Build a mechanical animal!</u></h2>
+	</div>
 	<span class="scroll" style="font-size: 2rem; color: #000; text-align: center; display: flex; align-items: center; justify-content: center;">↓</span>
 </div>
 
@@ -1271,7 +1353,7 @@
 	</div>
 	<div class="video-embed">
 		<iframe
-			src="https://www.youtube.com/embed/H5RPsCMl3uM"
+			src="https://www.youtube-nocookie.com/embed/H5RPsCMl3uM"
 			title="Strandbeest"
 			frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
