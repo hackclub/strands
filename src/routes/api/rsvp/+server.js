@@ -1,15 +1,17 @@
 import { json } from '@sveltejs/kit';
-import { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+
+const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME } = env;
 
 const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
-/** Sanitise a string so it cannot inject formulas or HTML into Airtable. */
+/** Sanitise **/
 function sanitise(str) {
-	// Strip leading formula triggers (=, +, -, @, tab, CR) to block CSV/formula injection
+	// Strip leading formula triggers (=, +, -, @, tab, CR) 
 	let s = str.replace(/^[=+\-@\t\r]+/, '');
 	// Remove any HTML tags
 	s = s.replace(/<[^>]*>/g, '');
-	// Collapse whitespace
+	// strip whitespace
 	s = s.replace(/\s+/g, ' ').trim();
 	return s;
 }
